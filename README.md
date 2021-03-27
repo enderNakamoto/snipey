@@ -5,7 +5,7 @@ STEP 1: Install dependencoes
 npm install
 ```
 
-STEP 2: get infura websocket endpoint
+STEP 2: get infura websocket endpoint from https://infura.io/
 
 get infura websocket endpoint, make a .env file and fill it up in the format 
 
