@@ -8,26 +8,27 @@ exports.logNewPair = (token0, token1, pairAddress) => {
 };
 
 
+exports.swap = (amount, router, tokenIn, tokenOut, waitInMinutes, admin, debug) => {
+  const amountIn = ethers.utils.parseUnits(amount, 'ether');
+  // the router.getAmountspout() gives an array back, amounts out is the last element
+  const amountOut = await router.getAmountsOut(amountIn, [tokenIn, tokenOut])[1];
+  const amountOutMin = amountOut.sub(amountOut.div(10));
 
+  debug &&  console.log(`
+  ========= we will try to swap =========
+  base: ${amountIn.toString()} for 
+  tokenOut: ${amounOutMin.toString()} 
+  `);
 
-
-//   const amountIn = ethers.utils.parseUnits('0.1', 'ether');
-//   const amounts = await router.getAmountsOut(amountIn, [tokenIn, tokenOut]);
-//   //Our execution price will be a bit different, we need some flexbility
-//   const amountOutMin = amounts[1].sub(amounts[1].div(10));
-//   console.log(`
-//     Buying new token
-//     =================
-//     tokenIn: ${amountIn.toString()} ${tokenIn} (WETH)
-//     tokenOut: ${amounOutMin.toString()} ${tokenOut}
-//   `);
-//   const tx = await router.swapExactTokensForTokens(
-//     amountIn,
-//     amountOutMin,
-//     [tokenIn, tokenOut],
-//     addresses.recipient,
-//     Date.now() + 1000 * 60 * 10 //10 minutes
-//   );
-//   const receipt = await tx.wait(); 
-//   console.log('Transaction receipt');
-//   console.log(receipt);
+  const waitTill = Date.now() + 1000 * 60 * waitInMinutes;
+  const tx = await router.swapExactTokensForTokens(
+    amountIn,
+    amountOutMin,
+    [tokenIn, tokenOut],
+    admin,
+    waitTill
+  );
+  const receipt = await tx.wait(); 
+  debug && console.log('transaction receipt', receipt);
+  debug && console.log(' ====== Transaction mined ======');
+}
