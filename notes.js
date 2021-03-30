@@ -209,3 +209,24 @@
     //   }
     
     // });
+
+
+
+// passing gas 
+// https://github.com/ethers-io/ethers.js/issues/40
+
+
+// Any contract operation can take in one additional (optional) parameter, which is an object of overrides.
+
+// function foo(address addr) { ... }
+// function bar(address addr) constant returns (string result) { ... }
+// can be called with:
+
+// // You can optionally override the following on non-constant functions; anything
+// // you do not override will be determined automatically
+// var options = { gasPrice: 1000000000, gasLimit: 85000, nonce: 45, value: 0 };
+// var fooPromise = contract.foo(address, options);
+
+// // You can optionally override the following on constant functions
+// var options = { from: otherAddress };
+// var barPromise = contract.bar(address, options);
