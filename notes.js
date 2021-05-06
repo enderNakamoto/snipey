@@ -230,3 +230,10 @@
 // // You can optionally override the following on constant functions
 // var options = { from: otherAddress };
 // var barPromise = contract.bar(address, options);
+
+// all the methods to check stuff go here 
+
+// exports.checkIfBasePair = (basePairAddress, token0, token1) => {  
+//   return [token0, token1].includes(basePairAddress)
+// };
+
