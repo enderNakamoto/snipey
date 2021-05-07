@@ -9,6 +9,7 @@ const addresses = {
     pancakeRouter: '0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F'
   }, 
   MATIC: {
+    quickswapFactory: '0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32',
     quickSwapRouter: '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff'
   }
 }
